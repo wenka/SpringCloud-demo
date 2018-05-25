@@ -1,0 +1,14 @@
+server:
+  port: 8101
+
+#服务与服务之间相互调用一般都是根据这个name
+spring:
+  application:
+    name: service-client
+
+# 配置文件中服务注册中心的地址
+# ！！特别注意：defaultZone 这个位置不能使用 default-zone@@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/

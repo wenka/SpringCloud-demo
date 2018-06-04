@@ -8,3 +8,6 @@ spring:
   application:
     name: service-feign
 
+feign:
+  hystrix:
+    enabled: true

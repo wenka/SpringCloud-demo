@@ -29,6 +29,6 @@ public class HelloService {
     }
 
     public String error(String name) {
-        return name + ", is error";
+        return name + " in ribbon is error";
     }
 }

@@ -12,3 +12,4 @@ spring:
 feign:
   hystrix:
     enabled: true
+# 监控

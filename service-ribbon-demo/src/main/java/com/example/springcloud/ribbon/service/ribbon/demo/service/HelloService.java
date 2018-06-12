@@ -25,7 +25,7 @@ public class HelloService {
      */
     @HystrixCommand(fallbackMethod = "error")
     public String helloService(String name) {
-        return this.restTemplate.getForObject("http://SERVICE-CLIENT/hello/" + name, String.class);
+        return this.restTemplate.getForObject("http://SERVICE-CLIENT/hello/" + name, String.class) + "\t in ribbon";
     }
 
     public String error(String name) {

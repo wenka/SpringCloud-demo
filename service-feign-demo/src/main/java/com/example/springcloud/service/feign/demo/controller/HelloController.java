@@ -21,6 +21,6 @@ public class HelloController {
 
     @RequestMapping(value = "/feign/hello", method = RequestMethod.GET)
     public String hello(@RequestParam String name) {
-        return this.helloService.hello(name);
+        return this.helloService.hello(name)  + "\t in feign";
     }
 }

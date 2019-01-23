@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试WebSocket</title>
+	<input id="text" type="text" /><button onclick="send()">Send</button>    
+	<button onclick="closeWebSocket()">Close</button>
+	<hr/>
+	<div id="message"></div>
+</head>
+<body>
+
+</body>
+
+<script type="text/javascript">
+	var getUrlParam = function (paraName) {
+　　　　var url = document.location.toString();
+　　　　var arrObj = url.split("?");
+
+　　　　if (arrObj.length > 1) {
+　　　　　　var arrPara = arrObj[1].split("&");
+　　　　　　var arr;
+
+　　　　　　for (var i = 0; i < arrPara.length; i++) {
+　　　　　　　　arr = arrPara[i].split("=");
+
+　　　　　　　　if (arr != null && arr[0] == paraName) {
+　　　　　　　　　　return arr[1];
+　　　　　　　　}
+　　　　　　}
+　　　　　　return "";
+　　　　}
+　　　　else {
+　　　　　　return "";
+　　　　}
+　　}
+
+	var webSocket = null
+	if ('WebSocket' in window) {
+		webSocket = new WebSocket('ws://localhost:8080/webSocket/' + getUrlParam('name'))
+	}else{
+		alert('该浏览器不支持WebSocket!')
+	}
+
+	webSocket.onerror = res=>{
+		showMsg('error!!!')
+	}
+
+	webSocket.onopen = res=>{
+		showMsg('open.')
+	}
+
+	webSocket.onmessage = res=>{
+		showMsg(res.data)
+	}
+
+	webSocket.onclose = res=>{
+		showMsg('close!')
+	}
+
+	window.onbeforeunload = ()=>{
+		webSocket.close()
+	}
+
+	/**
+	* 显示消息
+	*/
+	var showMsg = function(innerHTML){
+		document.getElementById("message").innerHTML += innerHTML + '<br/>'
+	}
+
+	var send = function(){
+		var message = document.getElementById('text').value;
+		var msg = {
+			message: message,
+			username:getUrlParam('name')=='a'?'b':'a'
+		}
+		webSocket.send(JSON.stringify(msg))
+		// webSocket.send(msg)
+	}
+
+	var closeWebSocket = function(){
+		webSocket.close()
+	}
+
+	
+</script>
+</html>

@@ -21,15 +21,18 @@ public class JWTUtil extends JWT {
         Algorithm algorithmHS = Algorithm.HMAC256("secret");
         String wk = JWT.create().withIssuer("wk")
                 .withClaim("gender", "male")
-                .withClaim("age", 20)
+//                .withClaim("age", 20)
                 .withAudience()
                 .sign(algorithmHS);
         System.out.println(wk);
 
-        Algorithm algorithm = Algorithm.HMAC256("secret");
+        Algorithm algorithm = Algorithm.HMAC256("secret"); //com.auth0.jwt.exceptions.SignatureVerificationException
         JWTVerifier verifier = JWT.require(algorithm)
                 .withIssuer("wk")
                 .build(); //Reusable verifier instance
+        // Signature : com.auth0.jwt.exceptions.SignatureVerificationException
+        // Payload : com.auth0.jwt.exceptions.JWTDecodeException
+        // header : com.auth0.jwt.exceptions.JWTDecodeException
         DecodedJWT jwt = verifier.verify(wk);
         System.out.println("token==>" + jwt.getToken());
         System.out.println("header==>" + jwt.getHeader());

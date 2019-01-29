@@ -1,5 +1,5 @@
 # RabbitMQ
-
+> AMQP(Advanced Message Queuing Protocol) 一个提供统一消息服务的应用层标准高级消息队列协议,是应用层协议的一个开放标准,为面向消息的中间件设计。
 
 ## Fanout
 ![Image text](https://cdn.www.sojson.com/file/doc/8914084922)

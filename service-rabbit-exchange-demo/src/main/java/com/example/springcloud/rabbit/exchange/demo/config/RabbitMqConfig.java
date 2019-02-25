@@ -9,50 +9,33 @@ import org.springframework.context.annotation.Configuration;
  * Created with IDEA
  * author:wenka wkwenka@gmail.com
  * Date:2019/01/29  上午 11:16
- * Description:
+ * Description: FanoutExchange
  */
 @Configuration
 public class RabbitMqConfig {
 
     @Bean(name = "aQueue")
     public Queue queueA() {
-        return new Queue("aaa");
+        return new Queue("fanout.a");
     }
 
     @Bean(name = "bQueue")
     public Queue queueB() {
-        return new Queue("bbb");
+        return new Queue("fanout.b");
     }
 
     @Bean
-    AbstractExchange fanoutExchange() {
-//        return new FanoutExchange("fanoutExchange");
-        return new TopicExchange("exchange");
+    FanoutExchange fanoutExchange() {
+        return new FanoutExchange("fanoutExchange");
     }
 
     @Bean
-    Binding bindingExchangeA(@Qualifier("aQueue") Queue queue, AbstractExchange abstractExchange) {
-        if (abstractExchange instanceof FanoutExchange) {
-            FanoutExchange exchange = null;
-            exchange = (FanoutExchange) abstractExchange;
-            return BindingBuilder.bind(queue).to(exchange);
-        }else if (abstractExchange instanceof TopicExchange){
-            TopicExchange topicExchange = (TopicExchange)abstractExchange;
-            return BindingBuilder.bind(queue).to(topicExchange).with("fanout.A");
-        }
-        return null;
+    Binding bindingExchangeA(@Qualifier("aQueue") Queue queue, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(queue).to(fanoutExchange);
     }
 
     @Bean
-    Binding bindingExchangeB(@Qualifier("bQueue") Queue BMessage, AbstractExchange abstractExchange) {
-        if (abstractExchange instanceof FanoutExchange) {
-            FanoutExchange exchange = null;
-            exchange = (FanoutExchange) abstractExchange;
-            return BindingBuilder.bind(BMessage).to(exchange);
-        }else if (abstractExchange instanceof TopicExchange){
-            TopicExchange topicExchange = (TopicExchange)abstractExchange;
-            return BindingBuilder.bind(BMessage).to(topicExchange).with("fanout.B");
-        }
-        return null;
+    Binding bindingExchangeB(@Qualifier("bQueue") Queue BMessage, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(BMessage).to(fanoutExchange);
     }
 }

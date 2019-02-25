@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * Description:
  */
 @Component
-@RabbitListener(queues = {"aaa"})
+@RabbitListener(queues = {"fanout.a"})
 public class AReceiver {
 
     @RabbitHandler

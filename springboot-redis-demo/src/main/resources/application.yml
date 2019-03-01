@@ -1,0 +1,6 @@
+spring:
+  redis:
+    host: www.wenka.top
+#    password:
+    port: 6379
+    database: 0

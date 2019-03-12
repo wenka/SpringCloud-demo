@@ -4,3 +4,6 @@ spring:
 #    password:
     port: 6379
     database: 0
+thy:
+  demo:
+    enabled: true

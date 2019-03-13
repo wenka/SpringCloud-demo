@@ -9,8 +9,11 @@ import org.springframework.context.annotation.Configuration;
  * Date:2019/03/12  下午 04:03
  * Description:
  */
-@Configuration
 public class ThymeleafDemoMarkerConfiguration {
+
+    ThymeleafDemoMarkerConfiguration(){
+        System.out.println("ThymeleafDemoMarkerConfiguration created =========> ");
+    }
 
     @Bean
     public ThymeleafDemoMarkerConfiguration.Marker markerBean() {

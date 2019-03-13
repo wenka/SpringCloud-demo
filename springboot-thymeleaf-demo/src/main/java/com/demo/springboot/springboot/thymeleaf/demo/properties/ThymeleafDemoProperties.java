@@ -17,6 +17,10 @@ public class ThymeleafDemoProperties {
 
     private String password;
 
+    public ThymeleafDemoProperties() {
+        System.out.println("ThymeleafDemoProperties....");
+    }
+
     public String getUsername() {
         return username;
     }
@@ -31,5 +35,13 @@ public class ThymeleafDemoProperties {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "ThymeleafDemoProperties{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

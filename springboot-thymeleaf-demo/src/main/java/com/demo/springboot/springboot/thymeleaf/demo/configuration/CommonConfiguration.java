@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
  * Date:2019/03/13  上午 09:35
  * Description:
  */
-@Configuration
-@ComponentScan(basePackages = "com.demo")
-public class CommonConfiguration {
-    CommonConfiguration(){
-        System.out.println("CommonConfiguration...");
-    }
-}
+//@Configuration
+//@ComponentScan(basePackages = "com.demo")
+//public class CommonConfiguration {
+//    CommonConfiguration(){
+//        System.out.println("CommonConfiguration...");
+//    }
+//}

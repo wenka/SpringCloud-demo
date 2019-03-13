@@ -6,4 +6,5 @@ spring:
     database: 0
 thy:
   demo:
-    enabled: true
+    username: aaa
+    password: bbb

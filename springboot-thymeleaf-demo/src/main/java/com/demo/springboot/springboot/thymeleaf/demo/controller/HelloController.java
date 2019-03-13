@@ -1,5 +1,6 @@
-package com.demo.springboot.springboot.thymeleaf.demo;
+package com.demo.springboot.springboot.thymeleaf.demo.controller;
 
+import com.demo.springboot.springboot.thymeleaf.demo.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class HelloController {
+
+    HelloController(){
+        System.out.println("hello controller ....");
+    }
 
     @Autowired
     private HelloService helloService;

@@ -1,4 +1,4 @@
-package com.demo.springboot.springboot.thymeleaf.demo;
+package com.demo.springboot.springboot.thymeleaf.demo.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ public class ThymeleafDemoMarkerConfiguration {
 
     @Bean
     public ThymeleafDemoMarkerConfiguration.Marker markerBean() {
-        System.out.println("=========> ");
+        System.out.println("Marker created =========> ");
         return new ThymeleafDemoMarkerConfiguration.Marker();
     }
 

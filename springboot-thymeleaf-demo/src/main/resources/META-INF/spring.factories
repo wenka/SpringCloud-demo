@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.demo.springboot.springboot.thymeleaf.demo.ThymeleafDemoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.demo.springboot.springboot.thymeleaf.demo.configuration.ThymeleafDemoConfiguration

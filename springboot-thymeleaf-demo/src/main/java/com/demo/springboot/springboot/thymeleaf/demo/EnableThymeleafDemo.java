@@ -1,5 +1,6 @@
 package com.demo.springboot.springboot.thymeleaf.demo;
 
+import com.demo.springboot.springboot.thymeleaf.demo.configuration.ThymeleafDemoMarkerConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

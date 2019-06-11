@@ -1,0 +1,28 @@
+server:
+  port: 9000
+# 主数据源
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test1?useSSL=true
+    username: root
+    password: abc123..
+# 从数据源
+slave:
+  datasource:
+    names: ds1,ds2
+# ds1
+    ds1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test2?useSSL=true
+      username: root
+      password: abc123..
+    ds2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test3?useSSL=true
+      username: root
+      password: abc123..
+logging:
+  level:
+    come.demo: debug
+    org.springframework.jdbc.core.JdbcTemplate: debug

@@ -28,16 +28,36 @@
                     contentType: "application/json",
                     success: function(result) {
                        console.log(result)
+                        var encrypt2 = new JSEncrypt();
+                        encrypt2.setPrivateKey($("#privateKey").val())
+                        var arrayBufferPromiseLike = encrypt2.decrypt(result.data);
+                        console.log("解密：")
+                        console.log(JSON.parse(arrayBufferPromiseLike))
                     }
                 });
             });
     });
 </script>
-<h2>公钥：</h2>
+<h2>加密公钥：</h2>
 <textarea id="publickey" rows="5" cols="45">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCY4Taqg+ub9uMkQ3Jnh/U/t7o1
 d7t9ogEjTOsq2CC2hEsoFTOXS37g4kksnfuUxu6dPaFF8HDFKhdrHfa/Qy5IJ6Ik
 RGfDsmrpXpQWs7SViuzhr7V/WaDmqOWX+itP4fYbOtJZ2qt0SIebgpONfnhOk+x8
-H936MVQUY7fHj9XtKQIDAQAB
-        </textarea>
+H936MVQUY7fHj9XtKQIDAQAB</textarea>
+
+<h2>解密秘钥：</h2>
+<textarea id="privateKey" rows="5" cols="45">MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJjhNqqD65v24yRD
+cmeH9T+3ujV3u32iASNM6yrYILaESygVM5dLfuDiSSyd+5TG7p09oUXwcMUqF2sd
+9r9DLkgnoiREZ8OyaulelBaztJWK7OGvtX9ZoOao5Zf6K0/h9hs60lnaq3RIh5uC
+k41+eE6T7Hwf3foxVBRjt8eP1e0pAgMBAAECgYAQWZ3AFMXA82GNgk0c93RqMRsQ
+FtMNd6MJhHNuLJkrC/EBw2q2FpPmNy0+QVMjsTbZyDqUQUe+PmcsxJKcF/I+CPWT
+5HK+cm+867Rq0V3S3MHk3Ylao6UWeBYH81PXVHSvdL+ffYcZ19VynWQF2saVTzOZ
+6b3f/bxzMQ4op/FwkQJBAMgW1y2jj6+Vm+H4wTogkUT2IzTDs1apbIhX5G12g2VY
+EPY21ik9CZ8K/bOxfFviN8LnWAWGsosY8NtQNXny2q0CQQDDmUugg3L5AFobqJK7
+/iYALKr/OmaxWDCPfyBz1zejg+2nSzA6qy4IqK9h3uq3/ezSOokd9vAmoorOOf+n
+ucftAkEAmyg7DAT9cubMzlobXHvMqnFDs7Ld6qHOq5ucYtW35mp4HLVBNRFD2LSp
+LyK+kHHHU7gZpY9h/EMG4so77ajIsQJALvGuvfJueKaF+ddmiCoCEs6lp6Xrmaqx
+1O7M6iCAIQV710frZllJLhjWJuYqbUhLO1WDLSbkElG2gLJY0nd7LQJAcex9rcC+
+pra6KcfaycrbqoqvztGIAeRNDf05W1SPUaK7f9X1fknxbxPujXJxfFX/7cRMV24l
+4yYIfjMIxOYQBg==</textarea>
 <input type="button" id="bt" value="提交" />
 </body>

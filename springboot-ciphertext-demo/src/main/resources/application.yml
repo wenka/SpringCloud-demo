@@ -1,1 +1,7 @@
-
+server:
+  port: 8080
+wk:
+  cipher:
+    enable: true
+    public-key-location: pub.key
+    private-key-location: pri.key

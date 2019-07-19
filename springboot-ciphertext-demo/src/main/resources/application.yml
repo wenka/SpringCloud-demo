@@ -3,5 +3,5 @@ server:
 wk:
   cipher:
     enable: true
-    public-key-location: pub.key
-    private-key-location: pri.key
+    public-key-location: key/pub.key
+    private-key-location: key/pri.key

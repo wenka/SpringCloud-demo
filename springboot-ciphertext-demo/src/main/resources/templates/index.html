@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RSA 加解密</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.1.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    $(function() {
+        $("#bt").click(
+            function() {
+
+                var encrypt = new JSEncrypt();
+                encrypt.setPublicKey($("#publickey").val());
+                var requstBody = {
+                    id: 1,
+                    name: 'aa',
+                    password: '111111'
+                }
+                $.ajax({
+                    type: "POST",
+                    url:"/post",
+                    data:"{\"requestData\":"+encrypt.encrypt(JSON.stringify(requstBody))+"}",
+                    dataType:'json',
+                    contentType: "application/json",
+                    success: function(result) {
+                       console.log(result)
+                    }
+                });
+            });
+    });
+</script>
+<h2>公钥：</h2>
+<textarea id="publickey" rows="5" cols="45">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCY4Taqg+ub9uMkQ3Jnh/U/t7o1
+d7t9ogEjTOsq2CC2hEsoFTOXS37g4kksnfuUxu6dPaFF8HDFKhdrHfa/Qy5IJ6Ik
+RGfDsmrpXpQWs7SViuzhr7V/WaDmqOWX+itP4fYbOtJZ2qt0SIebgpONfnhOk+x8
+H936MVQUY7fHj9XtKQIDAQAB
+        </textarea>
+<input type="button" id="bt" value="提交" />
+</body>

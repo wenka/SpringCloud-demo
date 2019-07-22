@@ -31,7 +31,7 @@ import java.util.Objects;
  */
 @ControllerAdvice
 @EnableConfigurationProperties(CipherProperties.class)
-public class DecryptResponseBoydAdvice implements ResponseBodyAdvice<Result> {
+public class EncryptResponseBoydAdvice implements ResponseBodyAdvice<Result> {
 
     @Autowired
     private CipherProperties cipherProperties;

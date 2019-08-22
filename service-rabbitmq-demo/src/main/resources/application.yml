@@ -6,5 +6,10 @@ spring:
     port: 5672
     username: admin
     password: admin
+    listener:
+      simple:
+        concurrency: 5
+        max-concurrency: 10
+    publisher-confirms: true
 server:
   port: 10001

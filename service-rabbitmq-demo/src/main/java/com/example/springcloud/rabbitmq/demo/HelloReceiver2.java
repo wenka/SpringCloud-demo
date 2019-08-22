@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * Created with IDEA
  * author:wenka wkwenka@gmail.com
  * Date:2019/01/29  上午 10:28
- * Description:
+ * Description: 监听队列 hello
  */
 @Component
 @RabbitListener(queues = "hello")

@@ -17,8 +17,24 @@ public class TestValue {
     @Value("${name:null}")
     private String name;
 
+    @Value("${log.path}")
+    private String logPath;
+
+    @Value("${log.name}")
+    private String logName;
+
+    @Value("${instance-id}")
+    private String instanceId;
+
+    @Value("${port}")
+    private String port;
+
     @PostConstruct
     public void print() {
         System.out.println("name = " + name);
+        System.out.println("logPath = " + this.logPath);
+        System.out.println("logName = " + this.logName);
+        System.out.println("instanceId = " + this.instanceId);
+        System.out.println("port = " + this.port);
     }
 }

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: springboot-nacos-demo
+nacos:
+  config:
+    endpoint: acm.aliyun.com
+    namespace: b4f9ac0e-57bf-4117-80a6-ba3d93520561
+    secret-key: gP8MArcuJD+C/aSpOaobLkf0Tf0=
+    access-key: 8b23188019604090b1bb8349cdc691fa
+#    access-key: LTAI4FoL3j7U6rySGXNB7h3o
+#    secret-key: OYTKidiS8sp7qfldiianKQLuRUX4Qi

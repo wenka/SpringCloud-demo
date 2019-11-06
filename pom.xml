@@ -8,5 +8,39 @@
     <artifactId>springcloud-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <modules>
+        <module>eureka-client-demo</module>
+        <module>eureka-server-demo</module>
+        <module>service-feign-demo</module>
+        <module>service-jwt-demo</module>
+        <module>service-rabbit-exchange-demo</module>
+        <module>service-rabbitmq-demo</module>
+        <module>service-ribbon-demo</module>
+        <module>service-websocket-demo</module>
+        <module>service-zuul-demo</module>
+        <module>springboot-apollo-demo</module>
+        <module>springboot-ciphertext-demo</module>
+        <module>springboot-dynamic-datasource-demo</module>
+        <module>springboot-lock-demo</module>
+        <module>springboot-nacos-demo</module>
+        <module>springboot-redis-demo</module>
+        <module>springboot-security-demo</module>
+        <module>springboot-thymeleaf-demo</module>
+        <module>springboot-subdatabase-demo</module>
+    </modules>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.28</version>
+        </dependency>
+    </dependencies>
 </project>

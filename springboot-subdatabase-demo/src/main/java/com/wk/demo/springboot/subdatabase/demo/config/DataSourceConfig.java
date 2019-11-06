@@ -55,7 +55,6 @@ public class DataSourceConfig {
         shardingRuleConfiguration.getTableRuleConfigs().addAll(Arrays.asList(tableRuleConfiguration));
 
         Properties properties = new Properties();
-        properties.setProperty("", "true");
         DataSource dataSource = ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfiguration, Collections.EMPTY_MAP, properties);
         return dataSource;
     }

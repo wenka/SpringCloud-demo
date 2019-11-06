@@ -1,6 +1,7 @@
 package com.wk.demo.springboot.subdatabase.demo.dao;
 
 import com.wk.demo.springboot.subdatabase.demo.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,4 +30,34 @@ public interface UserMapper {
      * @return
      */
     int batchInsertUser(List<User> userList);
+
+    /**
+     * 查询全部
+     *
+     * @return
+     */
+    List<User> selectAll();
+
+    /**
+     * 查询分页全部
+     *
+     * @return
+     */
+    List<User> selectAllPage(@Param("pageNo") Integer pageNo, @Param("pageSize") Integer pageSize);
+
+    /**
+     * 查询单个
+     *
+     * @param id
+     * @return
+     */
+    User selectOne(@Param("id") String id);
+
+    /**
+     * 查询通过name
+     *
+     * @param name
+     * @return
+     */
+    User selectByName(@Param("name") String name);
 }

@@ -29,10 +29,38 @@ class SpringbootSubdatabaseDemoApplicationTests {
     @Test
     public void testBatch() {
         List<User> userList = new ArrayList<>();
-        for (int i=0;i<10;i++){
-            User user = new User(UUID.randomUUID().toString(), "a", 18);
+        for (int i = 0; i < 10; i++) {
+            User user = new User(UUID.randomUUID().toString(), "a" + i, 18);
             userList.add(user);
         }
         this.userMapper.batchInsertUser(userList);
+    }
+
+    @Test
+    public void queryAll() {
+        List<User> userList = this.userMapper.selectAll();
+        userList.stream().forEach(user -> {
+            System.out.println(user);
+        });
+    }
+
+    @Test
+    public void queryByPage() {
+        List<User> userList = this.userMapper.selectAllPage(0, 5);
+        userList.stream().forEach(user -> {
+            System.out.println(user);
+        });
+    }
+
+    @Test
+    public void queryById() {
+        User user = this.userMapper.selectOne("3514fdd1-8f2f-4f7a-b3ef-5cecc2ada5f5");
+        System.out.println(user);
+    }
+
+    @Test
+    public void queryByName() {
+        User user = this.userMapper.selectByName("a0");
+        System.out.println(user);
     }
 }

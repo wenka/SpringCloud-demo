@@ -20,4 +20,24 @@
             </trim>
         </foreach>
     </insert>
+
+    <select id="selectAll" resultType="com.wk.demo.springboot.subdatabase.demo.model.User">
+        SELECT ID, USERNAME, AGE FROM `user` ORDER BY USERNAME
+    </select>
+
+    <select id="selectAllPage" resultType="com.wk.demo.springboot.subdatabase.demo.model.User">
+        SELECT ID, USERNAME, AGE FROM `user`
+        ORDER BY USERNAME
+        LIMIT ${pageNo}, ${pageSize}
+    </select>
+
+    <select id="selectOne" resultType="com.wk.demo.springboot.subdatabase.demo.model.User">
+        SELECT ID, USERNAME, AGE FROM `user`
+        WHERE ID = #{id}
+    </select>
+
+    <select id="selectByName" parameterType="java.lang.String" resultType="com.wk.demo.springboot.subdatabase.demo.model.User">
+        SELECT ID, USERNAME, AGE FROM `user`
+        WHERE USERNAME = #{name}
+    </select>
 </mapper>

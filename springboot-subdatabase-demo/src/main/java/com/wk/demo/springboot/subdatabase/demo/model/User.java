@@ -1,9 +1,6 @@
 package com.wk.demo.springboot.subdatabase.demo.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**
@@ -17,6 +14,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User {
 
     private String id;

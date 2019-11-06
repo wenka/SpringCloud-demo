@@ -2,10 +2,10 @@ spring:
   application:
     name: rabbitmq-demo
   rabbitmq:
-    host: 192.168.111.128
+    host: 192.168.80.129
     port: 5672
     username: admin
-    password: admin
+    password: 123456
     listener:
       simple:
         concurrency: 5

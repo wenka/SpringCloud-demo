@@ -1,7 +1,7 @@
 spring:
   redis:
     host: www.wenka.top
-#    password:
+    password: abc123..
     port: 6379
     database: 0
 thy:

@@ -1,5 +1,6 @@
 package com.wenka.elasticsearch.demo;
 
+import com.alibaba.fastjson.JSONObject;
 import com.wenka.elasticsearch.demo.dao.EmployeeDao;
 import com.wenka.elasticsearch.demo.model.Employee;
 import com.wenka.elasticsearch.demo.util.DateUtil;
@@ -154,8 +155,9 @@ public class ESObjectTest {
                 Iterator<SearchHit> iterator = topHits.getHits().iterator();
                 while (iterator.hasNext()) {
                     SearchHit next = iterator.next();
-                    Map<String, Object> sourceAsMap = next.getSourceAsMap();
-                    System.out.println(sourceAsMap);
+                    String id = next.getId();
+                    Employee employee = JSONObject.parseObject(next.getSourceAsString(), Employee.class).setId(id).setVersion(next.getVersion());
+                    System.out.println(employee);
                 }
             }
         }
@@ -201,7 +203,8 @@ public class ESObjectTest {
                 while (iterator.hasNext()) {
                     SearchHit next = iterator.next();
                     Map<String, Object> sourceAsMap = next.getSourceAsMap();
-                    System.out.println(sourceAsMap);
+                    String id = next.getId();
+                    System.out.println(id + "=[" + sourceAsMap + "]");
                 }
             }
         }

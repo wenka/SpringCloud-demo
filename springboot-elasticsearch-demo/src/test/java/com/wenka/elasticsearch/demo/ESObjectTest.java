@@ -108,6 +108,7 @@ public class ESObjectTest {
         queryBuilder.withSearchType(SearchType.QUERY_THEN_FETCH);
         // 按性别分组
         TermsAggregationBuilder genderTerm = AggregationBuilders.terms("gender_term").field("gender");
+        // 取组内年龄最大者
         TopHitsAggregationBuilder gender = AggregationBuilders.topHits("gender_term").sort("age", SortOrder.DESC).size(1).fetchSource(true);
         genderTerm.subAggregation(gender);
 

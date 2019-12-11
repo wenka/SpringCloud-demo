@@ -4,12 +4,17 @@ import com.wenka.elasticsearch.demo.dao.EmployeeDao;
 import com.wenka.elasticsearch.demo.model.Employee;
 import com.wenka.elasticsearch.demo.util.DateUtil;
 import org.elasticsearch.action.search.SearchType;
-import org.elasticsearch.index.query.*;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.MatchQueryBuilder;
+import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
-import org.elasticsearch.search.aggregations.ParsedAggregation;
+import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramAggregationBuilder;
+import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
+import org.elasticsearch.search.aggregations.bucket.histogram.Histogram;
+import org.elasticsearch.search.aggregations.bucket.histogram.ParsedDateHistogram;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedStringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
@@ -46,15 +51,33 @@ public class ESObjectTest {
     private ElasticsearchOperations elasticsearchOperations;
 
     @Test
-    public void testSave() {
-        Employee a = new Employee().setId("1").setFirstName("A").setLastName("aa").setAbout("I am aa").setAge(22).setGender("男").setInterests(Arrays.asList("singing", "dancing")).setCreateTime(DateUtil.getDate(2019, 2, 1));
-        Employee b = new Employee().setId("2").setFirstName("B").setLastName("bb").setAbout("I am bb").setAge(28).setGender("女").setInterests(Arrays.asList("sports", "music")).setCreateTime(DateUtil.getDate(2019, 4, 3));
-        Employee c = new Employee().setId("3").setFirstName("C").setLastName("cc").setAbout("I am cc").setAge(18).setGender("男").setInterests(Arrays.asList("BalaBala", "dancing")).setCreateTime(DateUtil.getDate(2019, 6, 5));
-        Employee d = new Employee().setId("4").setFirstName("D").setLastName("dd").setAbout("I am dd").setAge(25).setGender("女").setInterests(Arrays.asList("study")).setCreateTime(DateUtil.getDate(2019, 8, 7));
+    public void testSaveOne() {
+        Employee d = new Employee().setFirstName("E").setLastName("ee").setAbout("I am ee").setAge(23).setGender("女").setInterests(Arrays.asList("study")).setCreateTime(DateUtil.getDate(2019, 8, 7));
+        this.employeeDao.save(d);
+    }
 
-        List<Employee> employees = Arrays.asList(a, b, c, d);
-        Iterable<Employee> save = this.employeeDao.saveAll(employees);
-        System.out.println(save);
+    @Test
+    public void testSave() {
+        long begin = System.currentTimeMillis();
+        int total = 10000000; // 一千万数据
+        List<Employee> employeeList = new ArrayList<>(10000);
+        Random random = new Random();
+        for (int i = 0; i < total; i++) {
+            Employee employee = new Employee()
+                    .setFirstName("fn" + i)
+                    .setLastName("auto ln" + i)
+                    .setAbout("I am " + i)
+                    .setAge(random.nextInt(50))
+                    .setGender(random.nextBoolean() ? "男" : "女")
+//                    .setInterests(Arrays.asList("singing", "dancing"))
+                    .setCreateTime(DateUtil.getDate(2019, random.nextInt(12), random.nextInt(28)));
+            employeeList.add(employee);
+            if (employeeList.size() == 10000) {
+                this.employeeDao.saveAll(employeeList);
+                employeeList.clear();
+            }
+        }
+        System.out.println("耗时：" + (System.currentTimeMillis() - begin));
     }
 
     @Test
@@ -129,14 +152,58 @@ public class ESObjectTest {
             for (Aggregation agg : aggregationList) {
                 ParsedTopHits topHits = (ParsedTopHits) agg;
                 Iterator<SearchHit> iterator = topHits.getHits().iterator();
-                while (iterator.hasNext()){
+                while (iterator.hasNext()) {
                     SearchHit next = iterator.next();
                     Map<String, Object> sourceAsMap = next.getSourceAsMap();
                     System.out.println(sourceAsMap);
                 }
             }
         }
-        System.out.println();
     }
 
+    /**
+     * 根据日期分组
+     *
+     * @Param
+     * @Return void
+     * @Author wenka
+     * @Date 2019/12/11 下午 04:27
+     */
+    @Test
+    public void testGroupByDate() {
+        // 查询条件构建器
+        NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
+        queryBuilder.withSearchType(SearchType.QUERY_THEN_FETCH);
+        // 按日期年月份分组
+        DateHistogramAggregationBuilder dateHistogramAggregationBuilder = AggregationBuilders.dateHistogram("date").field("create_time")
+                .dateHistogramInterval(DateHistogramInterval.MONTH);
+        // 取组内年龄最大者
+        TopHitsAggregationBuilder gender = AggregationBuilders.topHits("date").sort("age", SortOrder.DESC).size(1).fetchSource(true);
+        dateHistogramAggregationBuilder.subAggregation(gender);
+
+        queryBuilder.addAggregation(dateHistogramAggregationBuilder);
+
+        Aggregations query = this.elasticsearchOperations.query(queryBuilder.build(), response -> {
+            return response.getAggregations();
+        });
+
+        Map<String, Aggregation> aggregationMap = query.asMap();
+        ParsedDateHistogram aggregation = (ParsedDateHistogram) aggregationMap.get("date");
+        List<? extends Histogram.Bucket> buckets = aggregation.getBuckets();
+        for (Histogram.Bucket bucket : buckets) {
+            String keyAsString = bucket.getKeyAsString();
+            System.out.println("------------------------" + keyAsString + "月（" + bucket.getDocCount() + "）------------------------");
+            Aggregations aggregations = bucket.getAggregations();
+            List<Aggregation> aggregationList = aggregations.asList();
+            for (Aggregation agg : aggregationList) {
+                ParsedTopHits topHits = (ParsedTopHits) agg;
+                Iterator<SearchHit> iterator = topHits.getHits().iterator();
+                while (iterator.hasNext()) {
+                    SearchHit next = iterator.next();
+                    Map<String, Object> sourceAsMap = next.getSourceAsMap();
+                    System.out.println(sourceAsMap);
+                }
+            }
+        }
+    }
 }

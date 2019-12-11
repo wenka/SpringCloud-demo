@@ -63,4 +63,11 @@ public class SpringbootRedisDemoApplicationTests {
             opsForValue.set(String.valueOf(i),String.valueOf(i));
         }
     }
+
+    @Test
+    public void test4(){
+        Boolean add = this.redisTemplate.opsForZSet().add("zset", "order1", 1);
+        //8
+        System.out.println(add);
+    }
 }

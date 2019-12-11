@@ -39,13 +39,16 @@ public class Employee {
     @Field(type = FieldType.Integer)
     private Integer age;
 
+    @Field(type = FieldType.Keyword)
+    private String gender;
+
     @Field(type = FieldType.Text)
     private String about;
 
     @Field(type = FieldType.Text)
     private List<String> interests;
 
-    @Field(type = FieldType.Date, pattern = "yyyy-MM-dd")
+    @Field(type = FieldType.Date, pattern = "yyyy-MM-dd",name = "create_time")
     private Date createTime;
 
     @Version

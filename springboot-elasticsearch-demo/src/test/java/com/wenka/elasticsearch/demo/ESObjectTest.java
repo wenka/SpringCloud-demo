@@ -146,7 +146,7 @@ public class ESObjectTest {
         List<? extends Terms.Bucket> buckets = aggregation.getBuckets();
         for (Terms.Bucket bucket : buckets) {
             String keyAsString = bucket.getKeyAsString();
-            System.out.println("------------------------" + keyAsString + "------------------------");
+            System.out.println("------------------------" + keyAsString + "(" + bucket.getDocCount() + ")------------------------");
             Aggregations aggregations = bucket.getAggregations();
             List<Aggregation> aggregationList = aggregations.asList();
             for (Aggregation agg : aggregationList) {

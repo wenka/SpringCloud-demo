@@ -29,6 +29,8 @@
         <module>springboot-thymeleaf-demo</module>
         <module>springboot-subdatabase-demo</module>
         <module>springboot-elasticsearch-demo</module>
+      <module>springboot-oauth2.0-demo</module>
+        <module>springboot-sqllite-demo</module>
     </modules>
 
     <parent>

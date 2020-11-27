@@ -60,7 +60,7 @@ class SpringbootSubdatabaseDemoApplicationTests {
 
     @Test
     public void queryByName() {
-        User user = this.userMapper.selectByName("a0");
+        User user = this.userMapper.selectByName("a0"); //2251
         System.out.println(user);
     }
 }

@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created with IDEA
@@ -23,7 +20,7 @@ import java.util.UUID;
 @RunWith(SpringRunner.class)
 public class StudentTest {
 
-    private int total = 10000;
+    private int total = 10;
     @Autowired
     private StudentDao studentDao;
 
@@ -32,7 +29,7 @@ public class StudentTest {
 
         List<Student> studentList = new LinkedList<>();
         for (int i = 0; i < total; i++) {
-            studentList.add(new Student(UUID.randomUUID().toString(), "AA" + i, 22, new Date()));
+            studentList.add(new Student(UUID.randomUUID().toString(), "AA" + i, 22, new Date(),null));
         }
         long begin = System.currentTimeMillis();
         this.studentDao.saveAll(studentList);
@@ -43,8 +40,9 @@ public class StudentTest {
     @Test
     public void testSelect() {
         long begin = System.currentTimeMillis();
-        List<Student> all = this.studentDao.findAll();
-        System.out.println("---------------------------" + all.size());
+//        List<Student> all = this.studentDao.findAll();
+        Optional<Student> optional = this.studentDao.findById("3bd951eb-b97a-4559-bd62-167318e14417");
+        Student student = optional.get();
         System.out.println(System.currentTimeMillis() - begin);
 //        for (Student student : all) {
 //            System.out.println(student);

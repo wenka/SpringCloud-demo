@@ -2,54 +2,54 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.demo.springcloud</groupId>
-    <artifactId>springcloud-demo</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+  <groupId>com.demo.springcloud</groupId>
+  <artifactId>springcloud-demo</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
 
-    <modules>
-        <module>eureka-client-demo</module>
-        <module>eureka-server-demo</module>
-        <module>service-feign-demo</module>
-        <module>service-jwt-demo</module>
-        <module>service-rabbit-exchange-demo</module>
-        <module>service-rabbitmq-demo</module>
-        <module>service-ribbon-demo</module>
-        <module>service-websocket-demo</module>
-        <module>service-zuul-demo</module>
-        <module>springboot-apollo-demo</module>
-        <module>springboot-ciphertext-demo</module>
-        <module>springboot-dynamic-datasource-demo</module>
-        <module>springboot-lock-demo</module>
-        <module>springboot-nacos-demo</module>
-        <module>springboot-redis-demo</module>
-        <module>springboot-security-demo</module>
-        <module>springboot-thymeleaf-demo</module>
-        <module>springboot-subdatabase-demo</module>
-        <module>springboot-elasticsearch-demo</module>
-      <module>springboot-oauth2.0-demo</module>
-        <module>springboot-sqllite-demo</module>
-    </modules>
+  <modules>
+    <module>eureka-client-demo</module>
+    <module>eureka-server-demo</module>
+    <module>service-feign-demo</module>
+    <module>service-jwt-demo</module>
+    <module>service-rabbit-exchange-demo</module>
+    <module>service-rabbitmq-demo</module>
+    <module>service-ribbon-demo</module>
+    <module>service-websocket-demo</module>
+    <module>service-zuul-demo</module>
+    <module>springboot-apollo-demo</module>
+    <module>springboot-ciphertext-demo</module>
+    <module>springboot-dynamic-datasource-demo</module>
+    <module>springboot-lock-demo</module>
+    <module>springboot-nacos-demo</module>
+    <module>springboot-redis-demo</module>
+    <module>springboot-security-demo</module>
+    <module>springboot-thymeleaf-demo</module>
+    <module>springboot-subdatabase-demo</module>
+    <module>springboot-elasticsearch-demo</module>
+    <module>springboot-oauth2.0-auth-server-demo</module>
+    <module>springboot-sqllite-demo</module>
+  </modules>
 
-    <parent>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-parent</artifactId>
-        <version>Hoxton.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+  <parent>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-parent</artifactId>
+    <version>Hoxton.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.28</version>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.28</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-    </dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+  </dependencies>
 </project>

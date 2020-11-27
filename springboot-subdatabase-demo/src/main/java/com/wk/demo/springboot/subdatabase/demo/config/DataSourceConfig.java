@@ -48,7 +48,7 @@ public class DataSourceConfig {
         tableRuleConfiguration.setDatabaseShardingStrategyConfig(new StandardShardingStrategyConfiguration("id", new ModuleDatabaseShardingAlgorithm()));
 
         // 分表策略
-//        tableRuleConfiguration.setTableShardingStrategyConfig();
+//        tableRuleConfiguration.setTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("id", new ModuleDatabaseShardingAlgorithm()));
 
         ShardingRuleConfiguration shardingRuleConfiguration = new ShardingRuleConfiguration();
         shardingRuleConfiguration.setDefaultDataSourceName(dataSourceMap.keySet().iterator().next());
@@ -62,7 +62,7 @@ public class DataSourceConfig {
     private static DataSource createDataSource(final String dataSourceName) {
         log.info("create data source: {}", dataSourceName);
         HikariDataSource result = new HikariDataSource();
-        result.setJdbcUrl(String.format("jdbc:mysql://192.168.80.129:3306/%s", dataSourceName));
+        result.setJdbcUrl(String.format("jdbc:mysql://192.168.80.131:3306/%s", dataSourceName));
         result.setDriverClassName("com.mysql.cj.jdbc.Driver");
         result.setUsername("root");
         result.setPassword("123456");

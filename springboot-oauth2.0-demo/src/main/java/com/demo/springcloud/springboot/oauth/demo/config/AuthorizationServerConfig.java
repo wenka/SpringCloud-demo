@@ -1,7 +1,7 @@
-package com.demo.springcloud.springboot.oauth.auth.server.demo.config;
+package com.demo.springcloud.springboot.oauth.demo.config;
 
-import com.demo.springcloud.springboot.oauth.auth.server.demo.service.ClientDetailsServiceImpl;
-import com.demo.springcloud.springboot.oauth.auth.server.demo.service.UserServiceImpl;
+import com.demo.springcloud.springboot.oauth.demo.service.ClientDetailsServiceImpl;
+import com.demo.springcloud.springboot.oauth.demo.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -64,5 +64,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         // 允许表单认证
         security.allowFormAuthenticationForClients();
+        // 允许check_token访问
+        security.checkTokenAccess("permitAll()");
     }
 }

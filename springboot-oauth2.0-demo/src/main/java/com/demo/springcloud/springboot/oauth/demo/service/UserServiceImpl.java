@@ -1,6 +1,6 @@
-package com.demo.springcloud.springboot.oauth.auth.server.demo.service;
+package com.demo.springcloud.springboot.oauth.demo.service;
 
-import com.demo.springcloud.springboot.oauth.auth.server.demo.model.User;
+import com.demo.springcloud.springboot.oauth.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

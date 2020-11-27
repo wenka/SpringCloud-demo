@@ -1,4 +1,4 @@
-package com.demo.springcloud.springboot.oauth.auth.server.demo.config;
+package com.demo.springcloud.springboot.oauth.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

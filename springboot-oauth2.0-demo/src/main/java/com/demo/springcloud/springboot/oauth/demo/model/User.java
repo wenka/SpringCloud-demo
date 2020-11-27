@@ -1,4 +1,4 @@
-package com.demo.springcloud.springboot.oauth.auth.server.demo.model;
+package com.demo.springcloud.springboot.oauth.demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

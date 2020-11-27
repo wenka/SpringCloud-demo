@@ -1,4 +1,4 @@
-package com.demo.springcloud.springboot.oauth.auth.server.demo.controller;
+package com.demo.springcloud.springboot.oauth.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

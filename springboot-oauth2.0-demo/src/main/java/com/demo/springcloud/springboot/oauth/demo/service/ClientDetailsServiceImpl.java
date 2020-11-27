@@ -1,6 +1,6 @@
-package com.demo.springcloud.springboot.oauth.auth.server.demo.service;
+package com.demo.springcloud.springboot.oauth.demo.service;
 
-import com.demo.springcloud.springboot.oauth.auth.server.demo.model.Client;
+import com.demo.springcloud.springboot.oauth.demo.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;

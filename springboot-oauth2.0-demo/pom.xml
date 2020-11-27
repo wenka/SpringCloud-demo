@@ -8,9 +8,9 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <groupId>com.demo.springcloud</groupId>
-  <artifactId>springboot-oauth-auth-server-demo</artifactId>
+  <artifactId>springboot-oauth-demo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>springboot-oauth-auth-server-demo</name>
+  <name>springboot-oauth-demo</name>
   <description>OAuth2.0 认证服务</description>
 
   <properties>

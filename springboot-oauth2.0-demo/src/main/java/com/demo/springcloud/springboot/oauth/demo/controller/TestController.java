@@ -1,8 +1,8 @@
 package com.demo.springcloud.springboot.oauth.demo.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.demo.springcloud.springboot.oauth.demo.model.User;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -14,6 +14,7 @@ import java.security.Principal;
  * @description:
  */
 @RestController
+@Slf4j
 public class TestController {
 
     /**
@@ -25,5 +26,41 @@ public class TestController {
     @GetMapping("user/info")
     public Object getUser(Principal principal) {
         return principal;
+    }
+
+    /**
+     * 保存
+     *
+     * @param user
+     * @return
+     */
+    @PostMapping("user")
+    public Object postUser(@RequestBody User user) {
+        log.info("保存用户：{}", user);
+        return "OK";
+    }
+
+    /**
+     * 修改
+     *
+     * @param user
+     * @return
+     */
+    @PutMapping("user")
+    public Object putUser(@RequestBody User user) {
+        log.info("修改用户：{}", user);
+        return "OK";
+    }
+
+    /**
+     * 删除
+     *
+     * @param id
+     * @return
+     */
+    @DeleteMapping("user/{id}")
+    public Object postUser(@PathVariable String id) {
+        log.info("删除用户：{}", id);
+        return "OK";
     }
 }

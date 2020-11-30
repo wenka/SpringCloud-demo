@@ -3,3 +3,7 @@ server:
 spring:
   application:
     name: oauth2.0-auth-server
+  redis:
+    host: www.wenka.top
+    password: abc123..
+    database: 0

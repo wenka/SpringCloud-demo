@@ -1,0 +1,23 @@
+server:
+  port: 8200
+spring:
+  application:
+    name: springcloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 开启服务注册发现，通过注册中心转发
+#      routes:
+#      - id: route-a
+#        uri: http://${eureka.instance.ip-address}:${server.port}/SERVICE-CLIENT
+#        predicates:
+#        - Path=/hello/{name}
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}:${random.value}
+    prefer-ip-address: on
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/

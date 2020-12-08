@@ -7,12 +7,14 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true # 开启服务注册发现，通过注册中心转发
-#      routes:
-#      - id: route-a
-#        uri: http://${eureka.instance.ip-address}:${server.port}/SERVICE-CLIENT
-#        predicates:
-#        - Path=/hello/{name}
+          enabled: false # 设置为true 则http://ip:port/服务名/** 也可访问
+      routes: # 将以/client/**开头的请求都会转发到uri为lb://SERVICE-CLIENT的地址上
+      - id: SERVICE-CLIENT
+        uri: lb://SERVICE-CLIENT # SERVICE-CLIENT服务的负载均衡地址
+        predicates:
+        - Path=/client/**
+        filters:
+        - StripPrefix=1 # 转发请求之前去掉 “/client”
 
 eureka:
   instance:

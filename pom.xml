@@ -31,12 +31,13 @@
     <module>springboot-elasticsearch-demo</module>
     <module>springboot-oauth2.0-demo</module>
     <module>springboot-sqllite-demo</module>
+    <module>service-gateway-demo</module>
   </modules>
 
   <parent>
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-parent</artifactId>
-    <version>Hoxton.RELEASE</version>
+    <version>Hoxton.SR9</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
